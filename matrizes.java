@@ -4,7 +4,6 @@ public class matrizes {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
         int opcao;
 
         do {
@@ -50,7 +49,7 @@ public class matrizes {
             for(int j = 0; j < 3; j++)
                 matriz[i][j] = sc.nextInt();
 
-        System.out.println("Matriz:");
+        System.out.println("=== MATRIZ ===");
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 3; j++)
                 System.out.print(matriz[i][j] + " ");
@@ -70,7 +69,7 @@ public class matrizes {
                 if(matriz[i][j] < 0) negativos++;
             }
 
-        System.out.println("Negativos: " + negativos);
+        System.out.println("Total de negativos: " + negativos);
     }
 
     // ===== ATIVIDADE 3 =====
@@ -93,7 +92,7 @@ public class matrizes {
             for(int j = 0; j < 4; j++)
                 soma[i][j] = A[i][j] + B[i][j];
 
-        System.out.println("Resultado:");
+        System.out.println("=== RESULTADO ===");
         for(int i = 0; i < 4; i++) {
             for(int j = 0; j < 4; j++)
                 System.out.print(soma[i][j] + " ");
@@ -110,7 +109,7 @@ public class matrizes {
             for(int j = 0; j < 4; j++)
                 matriz[i][j] = sc.nextInt();
 
-        System.out.println("Diagonal:");
+        System.out.println("Diagonal principal:");
         for(int i = 0; i < 4; i++)
             System.out.print(matriz[i][i] + " ");
     }
@@ -124,7 +123,7 @@ public class matrizes {
             for(int j = 0; j < 3; j++)
                 matriz[i][j] = sc.nextDouble();
 
-        System.out.println("Transposta:");
+        System.out.println("=== TRANSPOSTA ===");
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 3; j++)
                 System.out.print(matriz[j][i] + " ");
@@ -148,12 +147,15 @@ public class matrizes {
             for(int j = 0; j < 2; j++)
                 B[i][j] = sc.nextInt();
 
-        for(int i = 0; i < 2; i++)
-            for(int j = 0; j < 2; j++)
+        for(int i = 0; i < 2; i++) {
+            for(int j = 0; j < 2; j++) {
+                R[i][j] = 0;
                 for(int k = 0; k < 3; k++)
                     R[i][j] += A[i][k] * B[k][j];
+            }
+        }
 
-        System.out.println("Resultado:");
+        System.out.println("=== RESULTADO ===");
         for(int i = 0; i < 2; i++) {
             for(int j = 0; j < 2; j++)
                 System.out.print(R[i][j] + " ");
@@ -164,7 +166,7 @@ public class matrizes {
     // ===== ATIVIDADE 7 =====
     public static void simetrica(Scanner sc) {
         int[][] matriz = new int[3][3];
-        boolean simetrica = true;
+        boolean ehSimetrica = true;
 
         System.out.println("Digite matriz 3x3:");
         for(int i = 0; i < 3; i++)
@@ -174,12 +176,12 @@ public class matrizes {
         for(int i = 0; i < 3; i++)
             for(int j = 0; j < 3; j++)
                 if(matriz[i][j] != matriz[j][i])
-                    simetrica = false;
+                    ehSimetrica = false;
 
-        if(simetrica)
-            System.out.println("É simétrica");
+        if(ehSimetrica)
+            System.out.println("A matriz é simétrica");
         else
-            System.out.println("Não é simétrica");
+            System.out.println("A matriz NÃO é simétrica");
     }
 
     // ===== ATIVIDADE 8 =====
@@ -191,7 +193,7 @@ public class matrizes {
             for(int j = 0; j < 4; j++)
                 matriz[i][j] = sc.nextDouble();
 
-        System.out.println("Matriz:");
+        System.out.println("=== MATRIZ ===");
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 4; j++)
                 System.out.print(matriz[i][j] + " ");
@@ -213,7 +215,7 @@ public class matrizes {
         }
     }
 
-    // ===== ATIVIDADE 9 - JOGO DA VELHA =====
+    // ===== ATIVIDADE 9 =====
     public static void jogoDaVelha(Scanner sc) {
 
         char[][] tabuleiro = new char[3][3];
@@ -240,6 +242,11 @@ public class matrizes {
             int l = sc.nextInt();
             int c = sc.nextInt();
 
+            if(l < 0 || l > 2 || c < 0 || c > 2) {
+                System.out.println("Posição inválida!");
+                continue;
+            }
+
             if(tabuleiro[l][c] != ' ') {
                 System.out.println("Posição ocupada!");
                 continue;
@@ -249,15 +256,15 @@ public class matrizes {
             jogadas++;
 
             for(int i = 0; i < 3; i++) {
-                if(tabuleiro[i][0]==jogador && tabuleiro[i][1]==jogador && tabuleiro[i][2]==jogador ||
-                   tabuleiro[0][i]==jogador && tabuleiro[1][i]==jogador && tabuleiro[2][i]==jogador) {
+                if((tabuleiro[i][0]==jogador && tabuleiro[i][1]==jogador && tabuleiro[i][2]==jogador) ||
+                   (tabuleiro[0][i]==jogador && tabuleiro[1][i]==jogador && tabuleiro[2][i]==jogador)) {
                     System.out.println("Jogador " + jogador + " venceu!");
                     return;
                 }
             }
 
-            if(tabuleiro[0][0]==jogador && tabuleiro[1][1]==jogador && tabuleiro[2][2]==jogador ||
-               tabuleiro[0][2]==jogador && tabuleiro[1][1]==jogador && tabuleiro[2][0]==jogador) {
+            if((tabuleiro[0][0]==jogador && tabuleiro[1][1]==jogador && tabuleiro[2][2]==jogador) ||
+               (tabuleiro[0][2]==jogador && tabuleiro[1][1]==jogador && tabuleiro[2][0]==jogador)) {
                 System.out.println("Jogador " + jogador + " venceu!");
                 return;
             }
