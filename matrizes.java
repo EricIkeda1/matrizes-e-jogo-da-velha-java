@@ -215,7 +215,7 @@ public class matrizes {
         }
     }
 
-    // ===== ATIVIDADE 9 =====
+    // ===== ATIVIDADE 9 - JOGO DA VELHA =====
     public static void jogoDaVelha(Scanner sc) {
 
         char[][] tabuleiro = new char[3][3];
@@ -238,9 +238,9 @@ public class matrizes {
                 if(i < 2) System.out.println("---+---+---");
             }
 
-            System.out.println("Jogador " + jogador + " (linha e coluna 0-2): ");
-            int l = sc.nextInt();
-            int c = sc.nextInt();
+            System.out.println("Jogador " + jogador + " (linha e coluna 1-3): ");
+            int l = sc.nextInt() - 1;
+            int c = sc.nextInt() - 1;
 
             if(l < 0 || l > 2 || c < 0 || c > 2) {
                 System.out.println("Posição inválida!");
@@ -270,7 +270,7 @@ public class matrizes {
             }
 
             if(jogadas == 9) {
-                System.out.println("Deu velha!");
+                System.out.println("Empate!");
                 return;
             }
 
