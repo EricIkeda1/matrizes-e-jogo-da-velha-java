@@ -248,7 +248,6 @@ public class matrizes {
             tabuleiro[l][c] = jogador;
             jogadas++;
 
-            // vitória
             for(int i = 0; i < 3; i++) {
                 if(tabuleiro[i][0]==jogador && tabuleiro[i][1]==jogador && tabuleiro[i][2]==jogador ||
                    tabuleiro[0][i]==jogador && tabuleiro[1][i]==jogador && tabuleiro[2][i]==jogador) {
